@@ -7,6 +7,9 @@ const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 
+// body 사용 허가
+app.use(express.json());
+
 app.get('/', (req, res) => {
     console.log('server testing');
 
@@ -14,10 +17,10 @@ app.get('/', (req, res) => {
 });
 
 const adminRouter = require('./routers/AdminRouter');
-app.use('/back-office', adminRouter);
+app.use('/admin', adminRouter);
 
 const appRouter = require('./routers/AppRouter');
-app.use('/api', appRouter);
+app.use('/app', appRouter);
 
 app.listen(PORT, () => {
     console.log(`myStory's server listen on port ${PORT}`);
